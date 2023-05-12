@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scientific Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      .calculator {
+        margin: 50px auto;
+        padding: 20px;
+        width: 400px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      #output {
+        margin-bottom: 10px;
+        padding: 10px;
+        width: 100%;
+        font-size: 24px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .calculator button {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .calculator button:hover {
+        background-color: #e6e6e6;
+      }
+
+      .calculator button.operator {
+        background-color: #ff9900;
+        color: #ffffff;
+      }
+
+      .calculator button.operator:hover {
+        background-color: #ffad33;
+      }
+
+      .calculator button.function {
+        background-color: #33ccff;
+        color: #ffffff;
+      }
+
+      .calculator button.function:hover {
+        background-color: #4dd6ff;
+      }
+
+      .calculator button.constant {
+        background-color: #00cc66;
+        color: #ffffff;
+      }
+
+      .calculator button.constant:hover {
+        background-color: #00e673;
+      }
+
+      .calculator button.equal {
+        background-color: #0066ff;
+        color: #ffffff;
+      }
+
+      .calculator button.equal:hover {
+        background-color: #007fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="output" />
+      <button onclick="appendToOutput('(')">(</button>
+      <button onclick="appendToOutput(')')">)</button>   
+      <button onclick="appendToOutput('7')">7</button>
+      <button onclick="appendToOutput('8')">8</button>
+      <button onclick="appendToOutput('9')">9</button>
+      <button class="operator" onclick="appendToOutput('/')">/</button>
+      <button class="function" onclick="appendToOutput('Math.sqrt(')">√</button>
+      <button onclick="appendToOutput('4')">4</button>
+      <button onclick="appendToOutput('5')">5</button>
+      <button onclick="appendToOutput('6')">6</button>
+      <button class="operator" onclick="appendToOutput('*')">*</button>
+      <button class="function" onclick="appendToOutput('Math.log(')">log</button>
+      <button onclick="appendToOutput('1')">1</button>
+      <button onclick="appendToOutput('2')">2</button>
+      <button onclick="appendToOutput('3')">3</button>
+      <button class="operator" onclick="appendToOutput('-')">-</button>
+      <button class="constant" onclick="appendToOutput('Math.PI')">π</button>
+      <button onclick="appendToOutput('0')">0</button>
+      <button onclick="appendToOutput('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button class="operator" onclick="appendToOutput('+')">+</button>
+      <button class="function" onclick="appendToOutput('Math.sin(')">sin</button>
+      <button class="function" onclick="appendToOutput('Math.cos(')">cos</button>
+      <button class="function" onclick="appendToOutput('Math.tan(')">tan</button>
+      <button class="constant" onclick="appendToOutput('Math.E')">e</button>
+      <button class="function" onclick="appendToOutput('factorial(')">x!</button>
+      <button class="function" onclick="appendToOutput('Math.pow(')">x^y</button>
+      <button class="function" onclick="appendToOutput('Math.asin(')">asin</button>
+      <button class="function" onclick="appendToOutput('Math.acos(')">acos</button>
+      <button class="function" onclick="appendToOutput('Math.atan(')">atan</button>
+      <button class="constant" onclick="clearOutput()">AC</button>
+      <button onclick="appendToOutput(',')">,</button> 
+      </div>
+
+    <script>
+      function appendToOutput(value) {
+        document.getElementById("output").value += value;
+      }
+
+      function clearOutput() {
+        document.getElementById("output").value = "";
+      }
+
+      function calculate() {
+        let expression = document.getElementById("output").value;
+
+        try {
+          // Evaluate the expression using eval()
+          let result = eval(expression);
+
+          // Display the result
+          document.getElementById("output").value = result;
+        } catch (error) {
+          // Display an error message if there was an error evaluating the expression
+          document.getElementById("output").value = "Error";
+        }
+      }
+
+      function factorial(n) {
+        if (n == 0 || n == 1) {
+          return 1;
+        } else {
+          return n * factorial(n - 1);
+        }
+      }
+    </script>
+  </body>
+</html>
